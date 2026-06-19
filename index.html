@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Tiendita Rural - Accesible</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de Accesibilidad Flotante -->
+    <header class="accessibility-bar" role="toolbar" aria-label="Herramientas de accesibilidad">
+        <span class="acc-title">Accesibilidad:</span>
+        <button id="btn-zoom-in" class="btn acc-btn" title="Aumentar tamaño del texto" aria-label="Aumentar tamaño del texto">A+</button>
+        <button id="btn-zoom-out" class="btn acc-btn" title="Disminuir tamaño del texto" aria-label="Disminuir tamaño del texto">A-</button>
+        <button id="btn-theme-toggle" class="btn acc-btn" title="Cambiar tema de color" aria-label="Cambiar tema de color">Alternar Contraste ◐</button>
+        <button id="btn-tts-toggle" class="btn acc-btn" title="Activar o desactivar voz guía" aria-label="Desactivar voz guía">🔊 Voz Activa</button>
+    </header>
+
+    <!-- Zona de notificaciones accesibles (para lectores de pantalla) -->
+    <div id="live-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+
+    <!-- Menú Principal -->
+    <main id="main-menu" class="screen active" role="main">
+        <h1 class="title-bounce" tabindex="0">La Tiendita Rural 🌽🏡</h1>
+        <p class="subtitle" tabindex="0">¡Aprende los números y monedas de nuestro pueblo de forma divertida!</p>
+        <div class="menu-options" role="navigation" aria-label="Menú de Grados">
+            <button class="btn primary grade-btn" data-start="1" aria-label="Primer Grado: A Contar el Campo">
+                <span class="btn-title">1° Grado</span>
+                <span class="btn-subtitle">A Contar el Campo</span>
+            </button>
+            <button class="btn secondary grade-btn" data-start="2" aria-label="Segundo Grado: Conoce tus Monedas">
+                <span class="btn-title">2° Grado</span>
+                <span class="btn-subtitle">Conoce tus Monedas</span>
+            </button>
+            <button class="btn accent grade-btn" data-start="3" aria-label="Tercer Grado: Comprar en la Tienda">
+                <span class="btn-title">3° Grado</span>
+                <span class="btn-subtitle">Comprar en la Tienda</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- Pantalla de Grado 1 -->
+    <section id="game-grade-1" class="screen" aria-labelledby="g1-title" role="region">
+        <header class="game-header">
+            <button class="btn back-btn" aria-label="Volver al menú principal">⬅ Volver</button>
+            <h2 id="g1-title" tabindex="0">Contando en el Campo 🥚🍅</h2>
+        </header>
+        <div class="game-area">
+            <p id="g1-instruction" class="instruction" tabindex="0">¿Cuántos objetos hay? ¡Toca para contar!</p>
+            <div id="g1-items-container" class="items-area" role="group" aria-label="Objetos para contar"></div>
+            <div id="g1-options-container" class="options-area" role="group" aria-label="Opciones de respuesta"></div>
+        </div>
+    </section>
+
+    <!-- Pantalla de Grado 2 -->
+    <section id="game-grade-2" class="screen" aria-labelledby="g2-title" role="region">
+        <header class="game-header">
+            <button class="btn back-btn" aria-label="Volver al menú principal">⬅ Volver</button>
+            <h2 id="g2-title" tabindex="0">Las Monedas 🪙</h2>
+        </header>
+        <div class="game-area">
+            <p id="g2-instruction" class="instruction" tabindex="0">¿Qué valor tiene esta moneda?</p>
+            <div id="g2-coin-display" class="coin-display" tabindex="0" aria-label="Imagen de moneda"></div>
+            <div id="g2-options-container" class="options-area" role="group" aria-label="Opciones de respuesta"></div>
+        </div>
+    </section>
+
+    <!-- Pantalla de Grado 3 -->
+    <section id="game-grade-3" class="screen" aria-labelledby="g3-title" role="region">
+        <header class="game-header">
+            <button class="btn back-btn" aria-label="Volver al menú principal">⬅ Volver</button>
+            <h2 id="g3-title" tabindex="0">La Tiendita 🛒</h2>
+        </header>
+        <div class="game-area store-layout">
+            <div class="product-area">
+                <div id="g3-product" class="product-item" tabindex="0"></div>
+                <div class="price-tag" id="g3-price" tabindex="0"></div>
+            </div>
+            <div class="wallet-area">
+                <p id="g3-instruction" class="instruction" tabindex="0">Selecciona monedas para pagar. Llevas acumulado: $<span id="g3-current-amount">0</span></p>
+                <div id="g3-wallet" class="wallet-coins" role="group" aria-label="Monedero de pago">
+                    <button class="coin btn-coin" data-val="1" aria-label="Agregar moneda de 1 peso">$1</button>
+                    <button class="coin btn-coin" data-val="2" aria-label="Agregar moneda de 2 pesos">$2</button>
+                    <button class="coin btn-coin" data-val="5" aria-label="Agregar moneda de 5 pesos">$5</button>
+                    <button class="coin btn-coin" data-val="10" aria-label="Agregar moneda de 10 pesos">$10</button>
+                </div>
+                <div class="action-buttons">
+                    <button id="g3-clear" class="btn warning" aria-label="Limpiar dinero acumulado">Limpiar</button>
+                    <button id="g3-buy" class="btn success" aria-label="Comprar y verificar pago">¡Comprar!</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pantalla de Celebración -->
+    <section id="celebration-screen" class="screen overlay" aria-modal="true" role="dialog" aria-labelledby="celebration-title">
+        <div class="celebration-box">
+            <h1 id="celebration-title" class="bounce-in" tabindex="0">¡Muy Bien! 🌟</h1>
+            <p id="celebration-msg" tabindex="0">¡Lo hiciste excelente!</p>
+            <button id="next-btn" class="btn primary bounce" aria-label="Ir al siguiente ejercicio">Siguiente</button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

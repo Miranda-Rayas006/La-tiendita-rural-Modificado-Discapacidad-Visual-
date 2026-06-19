@@ -1,0 +1,497 @@
+/* --- CSS DE ALTO CONTRASTE Y ACCESIBILIDAD PARA LA TIENDITA RURAL --- */
+
+:root {
+    /* Variables del tema de alto contraste para baja visión */
+    --base-font-size: 100%;
+    
+    /* Colores por defecto (Alegre, contrastado y apto para niños) */
+    --bg-color: #0b132b;
+    --card-bg: #1c2541;
+    --text-color: #ffffff;
+    --text-muted: #cbd5e1;
+    
+    --primary: #3b82f6;      /* Azul vibrante */
+    --secondary: #ec4899;    /* Rosa vibrante */
+    --accent: #eab308;       /* Amarillo brillante (foco y alertas) */
+    --success: #22c55e;      /* Verde éxito */
+    --warning: #ef4444;      /* Rojo alerta */
+    --border-color: #475569;
+    
+    --shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    --border-radius: 16px;
+    --transition: all 0.2s ease-in-out;
+}
+
+/* Tema de Contraste Puro (Activado mediante JS) */
+body.high-contrast-theme {
+    --bg-color: #000000;
+    --card-bg: #000000;
+    --text-color: #ffffff;
+    --text-muted: #ffff00; /* Amarillo neon */
+    
+    --primary: #0000ff;      /* Azul puro */
+    --secondary: #ff00ff;    /* Magenta puro */
+    --accent: #ffff00;       /* Amarillo neon para foco */
+    --success: #00ff00;      /* Verde neon */
+    --warning: #ff0000;      /* Rojo puro */
+    --border-color: #ffffff;
+    --border-radius: 4px;    /* Diseño más plano e industrial */
+}
+
+/* Estilos Básicos */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: var(--base-font-size);
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: var(--transition);
+    overflow-x: hidden;
+    padding-top: 80px; /* Para que la barra de accesibilidad no tape contenido */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Barra de Accesibilidad Flotante */
+.accessibility-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #1e293b;
+    border-bottom: 4px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 1rem;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.acc-title {
+    font-weight: 900;
+    font-family: 'Fredoka One', sans-serif;
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+/* Botones de accesibilidad */
+.acc-btn {
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #0f172a;
+    color: #ffffff;
+    border: 3px solid #64748b;
+    cursor: pointer;
+    border-radius: 8px;
+    min-height: 48px; /* Altura táctil recomendada */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.acc-btn:hover, .acc-btn:focus {
+    background-color: var(--accent);
+    color: #000000;
+    border-color: #ffffff;
+    outline: none;
+}
+
+/* Oculto solo para lectores de pantalla pero accesible */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Pantallas */
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+    text-align: center;
+    flex: 1;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Menú Principal */
+#main-menu h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 3.5rem;
+    color: var(--accent);
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1.5rem;
+}
+
+.subtitle {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    margin-bottom: 3rem;
+    max-width: 650px;
+}
+
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Botones Principales */
+.btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    padding: 1.5rem;
+    border: 4px solid #ffffff;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 85px;
+}
+
+.btn-title {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+.btn-subtitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 4px;
+    opacity: 0.9;
+}
+
+/* Variaciones de Botones */
+.btn.primary {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+.btn.secondary {
+    background-color: var(--secondary);
+    color: #ffffff;
+}
+
+.btn.accent {
+    background-color: var(--accent);
+    color: #000000;
+}
+
+.btn.warning {
+    background-color: var(--warning);
+    color: #ffffff;
+}
+
+.btn.success {
+    background-color: var(--success);
+    color: #ffffff;
+}
+
+/* Hover y Foco Accesible */
+.btn:hover, .btn:focus,
+.coin:hover, .coin:focus,
+.acc-btn:focus {
+    transform: scale(1.03);
+    outline: 6px solid var(--accent);
+    outline-offset: 4px;
+    border-color: #ffffff;
+}
+
+/* Cabeceras del Juego */
+.game-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    border-bottom: 3px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.game-header h2 {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 2.2rem;
+    color: var(--accent);
+}
+
+.back-btn {
+    width: auto;
+    font-size: 1.3rem;
+    padding: 0.8rem 1.5rem;
+    min-height: 60px;
+    display: inline-flex;
+    background-color: #475569;
+    color: #ffffff;
+}
+
+/* Áreas del juego */
+.game-area {
+    width: 100%;
+    background-color: var(--card-bg);
+    border: 4px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.instruction {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: var(--accent);
+}
+
+/* Grado 1: Conteo */
+.items-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    min-height: 180px;
+    align-items: center;
+}
+
+/* Emojis gigantes para contar */
+.count-item {
+    font-size: 4.5rem;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 4px solid var(--border-color);
+    border-radius: var(--border-radius);
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    user-select: none;
+    position: relative;
+}
+
+/* Círculo con número que aparece al contar */
+.count-number {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background-color: var(--success);
+    color: #ffffff;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 1.3rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #ffffff;
+}
+
+.count-item.counted {
+    background-color: rgba(34, 197, 94, 0.2);
+    border-color: var(--success);
+    transform: scale(0.95);
+}
+
+.count-item:hover, .count-item:focus {
+    transform: scale(1.1);
+    border-color: var(--accent);
+    outline: 5px solid var(--accent);
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Opciones de respuesta (Grado 1 y 2) */
+.options-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.option-btn {
+    font-size: 2.5rem;
+    font-weight: 900;
+    min-height: 80px;
+}
+
+/* Grado 2: Monedas */
+.coin-display {
+    font-size: 9rem;
+    margin: 1.5rem 0 2.5rem;
+    line-height: 1;
+    animation: pulse 2s infinite alternate;
+    outline: none;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+/* Grado 3: Tiendita */
+.store-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .store-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.product-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 4px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+}
+
+.product-item {
+    font-size: 7rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.price-tag {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 3rem;
+    color: var(--accent);
+    background-color: #000000;
+    border: 3px solid var(--accent);
+    padding: 0.5rem 2rem;
+    border-radius: 12px;
+}
+
+.wallet-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.wallet-coins {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.coin {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1.8rem;
+    color: #000000;
+    background-color: #f59e0b; /* Color oro */
+    border: 4px solid #ffffff;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.coin[data-val="1"] { transform: scale(0.85); background-color: #d97706; color: white;}
+.coin[data-val="2"] { transform: scale(0.92); background-color: #b45309; color: white;}
+.coin[data-val="5"] { transform: scale(1); background-color: #eab308; }
+.coin[data-val="10"] { transform: scale(1.1); background-color: #ca8a04; }
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Pantalla de Celebración / Overlay */
+.screen.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.95);
+    z-index: 2000;
+}
+
+.celebration-box {
+    background-color: var(--card-bg);
+    border: 6px solid var(--accent);
+    border-radius: var(--border-radius);
+    padding: 3.5rem 2rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.celebration-box h1 {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 3.5rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+}
+
+.celebration-box p {
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Animaciones */
+.title-bounce {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
+.bounce-in {
+    animation: bounceIn 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    70% { transform: scale(0.9); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 1; }
+}
